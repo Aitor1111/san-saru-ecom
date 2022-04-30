@@ -5,6 +5,8 @@ import Image from "next/image";
 import Hero from "../components/Hero";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
+import ShopGrid from "../components/ShopGrid";
+import Pagination from "../components/Pagination";
 
 const Home: NextPage = () => {
   return (
@@ -18,19 +20,8 @@ const Home: NextPage = () => {
       <Header />
       <main className={styles.main}>
         <Hero />
+        <ShopGrid />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 };

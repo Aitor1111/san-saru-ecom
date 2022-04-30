@@ -1,0 +1,41 @@
+.container {
+  margin: 54px 26px 80px 26px;
+}
+
+.subtitle {
+  font-weight: 400;
+  color: #9b9b9b;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.shopGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 32px;
+}
+
+.paginator {
+  margin: 79px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  border: none;
+  background-color: transparent;
+  font-size: 29px;
+  font-weight: 400;
+  color: #b4b4b4;
+}
+
+.pageSelected {
+  color: black;
+}

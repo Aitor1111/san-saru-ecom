@@ -1,11 +1,10 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin: 0px 18px;
+  margin: 32px 18px 50px 18px;
 }
 
 .title {
-  margin-top: 32px;
   margin-bottom: 35px;
 }
 
@@ -16,14 +15,21 @@
   height: 240px;
 }
 
-.imgLabelBox {
+.imgLabel {
   background-color: white;
   position: absolute;
   bottom: 0px;
-}
-
-.imgLabel {
   font-weight: bold;
   font-size: 15px;
   padding: 21px 47px;
+}
+
+.content {
+  margin-right: 16px;
+}
+
+.cardRowWrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 25px;
 }
