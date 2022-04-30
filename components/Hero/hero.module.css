@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 18px;
+}
+
+.title {
+  margin-top: 32px;
+  margin-bottom: 35px;
+}
+
+.imgWrapper {
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  height: 240px;
+}
+
+.imgLabelBox {
+  background-color: white;
+  position: absolute;
+  bottom: 0px;
+}
+
+.imgLabel {
+  font-weight: bold;
+  font-size: 15px;
+  padding: 21px 47px;
+}
