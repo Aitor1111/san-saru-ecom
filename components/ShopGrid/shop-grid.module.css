@@ -34,7 +34,7 @@
 }
 
 .sortBtn {
-  display: flex;
+  display: none;
   align-items: center;
   background-color: transparent;
   border: none;
@@ -52,8 +52,17 @@
   margin-right: 12px;
 }
 
+.filtersBtnMobile {
+  display: block;
+}
+
 .filters {
+  display: none;
   margin-right: 50px;
+}
+
+.mobileFilters {
+  display: block;
 }
 
 .filtersSectionTitle {
@@ -98,5 +107,18 @@
 
   .filters {
     flex: 1;
+    display: block;
+  }
+
+  .mobileFilters {
+    display: none;
+  }
+
+  .sortBtn {
+    display: flex;
+  }
+
+  .filtersBtnMobile {
+    display: none;
   }
 }

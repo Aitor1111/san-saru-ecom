@@ -41,9 +41,18 @@
 }
 
 .category {
+  display: none;
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 12px;
+}
+
+.upperCta {
+  display: none;
+}
+
+.lowerCta {
+  display: block;
 }
 
 @media (min-width: 992px) {
@@ -92,5 +101,17 @@
 
   .cardRowWrap {
     column-gap: 30px;
+  }
+
+  .upperCta {
+    display: block;
+  }
+
+  .lowerCta {
+    display: none;
+  }
+
+  .category {
+    display: block;
   }
 }

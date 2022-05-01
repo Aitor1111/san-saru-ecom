@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import { FILTERS_CATEGORY, FILTERS_PRICE } from "../../constants/filters";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
 import CardLarge from "../CardLarge";
 import CheckBox from "../CheckBox";
 import MobileFilters from "../MobileFilters";
@@ -16,7 +15,6 @@ export default function ShopGrid({
 }: any) {
   const [pageSelected, setPageSelected] = useState(2);
   const [showFiltersMobile, setShowFiltersMobile] = useState(false);
-  const { width } = useWindowDimensions();
 
   return (
     <section className={styles.container}>
@@ -25,62 +23,63 @@ export default function ShopGrid({
           Photgraphy <span className={styles.slash}>/</span>{" "}
           <span className={styles.subtitle}>Premium Photos</span>
         </h4>
-        {width > 992 ? (
-          <div className={styles.sortBtn}>
-            <Image
-              src="/arrow-up-down.svg"
-              alt="Filters button"
-              width={15}
-              height={15}
-            />
-            <span className={styles.sortBtnLabel}>Sort By</span>
-            <span className={styles.sortCurrentLabel}>Price</span>
-            <Image
-              src="/chevron-down.svg"
-              alt="open-sort"
-              width={18}
-              height={10}
-            />
-          </div>
-        ) : (
-          <button onClick={() => setShowFiltersMobile(true)}>
-            <Image
-              src="/filters-box.svg"
-              alt="Filters button"
-              width={29}
-              height={29}
-            />
-          </button>
-        )}
+
+        <div className={styles.sortBtn}>
+          <Image
+            src="/arrow-up-down.svg"
+            alt="Filters button"
+            width={15}
+            height={15}
+          />
+          <span className={styles.sortBtnLabel}>Sort By</span>
+          <span className={styles.sortCurrentLabel}>Price</span>
+          <Image
+            src="/chevron-down.svg"
+            alt="open-sort"
+            width={18}
+            height={10}
+          />
+        </div>
+
+        <button
+          className={styles.filtersBtnMobile}
+          onClick={() => setShowFiltersMobile(true)}
+        >
+          <Image
+            src="/filters-box.svg"
+            alt="Filters button"
+            width={29}
+            height={29}
+          />
+        </button>
       </div>
       <section className={styles.shopSection}>
-        {/* TODO Export to 2 filters components */}
-        {width > 992 ? (
-          <div className={styles.filters}>
-            <h3 className={styles.filtersSectionTitle}>Category</h3>
-            {FILTERS_CATEGORY.map((c) => (
-              <CheckBox
-                key={c.id}
-                selected={selectedFilters.indexOf(c.name) > -1}
-                label={c.label}
-                onClick={() => onCategoryFilterSelect(c.name)}
-              />
-            ))}
+        <div className={styles.filters}>
+          <h3 className={styles.filtersSectionTitle}>Category</h3>
+          {FILTERS_CATEGORY.map((c) => (
+            <CheckBox
+              key={c.id}
+              selected={selectedFilters.indexOf(c.name) > -1}
+              label={c.label}
+              onClick={() => onCategoryFilterSelect(c.name)}
+            />
+          ))}
 
-            <Separator size="small" />
-            <h3 className={styles.filtersSectionTitle}>Price Range</h3>
-            {FILTERS_PRICE.map((c) => (
-              <CheckBox key={c.id} selected={false} label={c.label} />
-            ))}
-          </div>
-        ) : (
+          <Separator size="small" />
+          <h3 className={styles.filtersSectionTitle}>Price Range</h3>
+          {FILTERS_PRICE.map((c) => (
+            <CheckBox key={c.id} selected={false} label={c.label} />
+          ))}
+        </div>
+        <div className={styles.mobileFilters}>
           <MobileFilters
             onCategoryFilterSelect={onCategoryFilterSelect}
             selectedFilters={selectedFilters}
             visible={showFiltersMobile}
             onClose={() => setShowFiltersMobile(false)}
           />
-        )}
+        </div>
+
         <div className={styles.shopGrid}>
           {products?.map((product: any) => (
             <CardLarge
