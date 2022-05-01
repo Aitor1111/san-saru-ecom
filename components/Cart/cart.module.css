@@ -74,6 +74,7 @@
 }
 
 .itemImg {
+  margin-left: 8px;
   position: relative;
   width: 149px;
   height: 86px;

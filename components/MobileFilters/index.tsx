@@ -1,18 +1,10 @@
-import Image from "next/image";
+import { FILTERS_CATEGORY, FILTERS_PRICE } from "../../constants/filters";
 import Button from "../Button";
 import CheckBox from "../CheckBox";
 import Separator from "../Separator";
 import styles from "./mobile-filters.module.css";
 
 export default function MobileFilters({ visible = true, onClose = () => {} }) {
-  const data = [
-    { title: "People", selected: true },
-    { title: "People", selected: true },
-    { title: "People", selected: true },
-    { title: "People", selected: true },
-    { title: "People", selected: true },
-  ];
-
   return (
     <div className={`${styles.modal} ${visible ? styles.visible : ""}`}>
       <div className={styles.modalContent}>
@@ -23,16 +15,16 @@ export default function MobileFilters({ visible = true, onClose = () => {} }) {
           <h2>Filter</h2>
         </div>
         <ul className={styles.itemsContainer}>
-          {data.map((item, index) => (
+          {FILTERS_CATEGORY.map((item, index) => (
             <li className={styles.item} key={index}>
-              <CheckBox selected={item.selected} label={item.title} />
+              <CheckBox selected={true} label={item.label} />
             </li>
           ))}
           <Separator size="small" />
           <h2 className={styles.filterTitle}>Price range</h2>
-          {data.map((item, index) => (
+          {FILTERS_PRICE.map((item, index) => (
             <li className={styles.item} key={index}>
-              <CheckBox selected={item.selected} label={item.title} />
+              <CheckBox selected={true} label={item.label} />
             </li>
           ))}
         </ul>

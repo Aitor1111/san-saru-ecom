@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import { FILTERS_CATEGORY, FILTERS_PRICE } from "../../constants/filters";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import CardLarge from "../CardLarge";
 import CheckBox from "../CheckBox";
@@ -7,7 +8,7 @@ import MobileFilters from "../MobileFilters";
 import Separator from "../Separator";
 import styles from "./shop-grid.module.css";
 
-export default function ShopGrid() {
+export default function ShopGrid({ products, onAddToCart }: any) {
   const [pageSelected, setPageSelected] = useState(2);
   const [showFiltersMobile, setShowFiltersMobile] = useState(false);
   const { width } = useWindowDimensions();
@@ -52,16 +53,15 @@ export default function ShopGrid() {
         {width > 992 ? (
           <div className={styles.filters}>
             <h3 className={styles.filtersSectionTitle}>Category</h3>
-            <CheckBox selected={true} label={"People"} />
-            <CheckBox selected={true} label={"People"} />
-            <CheckBox selected={true} label={"People"} />
-            <CheckBox selected={true} label={"People"} />
+            {FILTERS_CATEGORY.map((c) => (
+              <CheckBox key={c.id} selected={true} label={c.label} />
+            ))}
+
             <Separator size="small" />
             <h3 className={styles.filtersSectionTitle}>Price Range</h3>
-            <CheckBox selected={true} label={"Lower than $20"} />
-            <CheckBox selected={true} label={"$20 - $100"} />
-            <CheckBox selected={true} label={"$100 - $200"} />
-            <CheckBox selected={true} label={"More than $200"} />
+            {FILTERS_PRICE.map((c) => (
+              <CheckBox key={c.id} selected={true} label={c.label} />
+            ))}
           </div>
         ) : (
           <MobileFilters
@@ -70,10 +70,13 @@ export default function ShopGrid() {
           />
         )}
         <div className={styles.shopGrid}>
-          <CardLarge />
-          <CardLarge />
-          <CardLarge />
-          <CardLarge />
+          {products.map((product: any) => (
+            <CardLarge
+              onAddToCart={() => onAddToCart(product)}
+              key={product._id}
+              product={product}
+            />
+          ))}
         </div>
       </section>
 
