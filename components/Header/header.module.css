@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  position: sticky;
   flex-direction: column;
   width: 100%;
 }
@@ -11,4 +12,41 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.logoWrapper {
+  position: relative;
+  width: 124px;
+  height: 20px;
+}
+
+.cartWrapper {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0px 68px 0px 90px;
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    padding: 37px 0px 30px 0px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logoWrapper {
+    width: 168px;
+    height: 32px;
+  }
+
+  .cartWrapper {
+    width: 54px;
+    height: 54px;
+  }
 }

@@ -6,7 +6,6 @@ import Hero from "../components/Hero";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 import ShopGrid from "../components/ShopGrid";
-import Pagination from "../components/Pagination";
 
 const Home: NextPage = () => {
   return (

@@ -3,3 +3,10 @@
   width: 97px;
   height: 122px;
 }
+
+@media (min-width: 992px) {
+  .container {
+    width: 117px;
+    height: 147px;
+  }
+}

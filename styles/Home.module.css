@@ -21,9 +21,8 @@
   flex-grow: 1;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@media (min-width: 992px) {
+  .main {
+    padding: 0px 68px 0px 82px;
   }
 }

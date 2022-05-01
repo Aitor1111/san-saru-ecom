@@ -7,6 +7,13 @@
   color: #9b9b9b;
 }
 
+.slash {
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  top: 2px;
+}
+
 .heading {
   display: flex;
   flex-direction: row;
@@ -15,10 +22,42 @@
   margin-bottom: 30px;
 }
 
+.shopSection {
+  display: flex;
+}
+
 .shopGrid {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 32px;
+}
+
+.sortBtn {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.sortBtnLabel {
+  color: #9b9b9b;
+  margin-left: 8px;
+  margin-right: 15px;
+}
+
+.sortCurrentLabel {
+  margin-right: 12px;
+}
+
+.filters {
+  margin-right: 50px;
+}
+
+.filtersSectionTitle {
+  margin-bottom: 20px;
 }
 
 .paginator {
@@ -38,4 +77,26 @@
 
 .pageSelected {
   color: black;
+}
+
+@media (min-width: 992px) {
+  .container {
+    margin: 68px 0px 80px 10px;
+  }
+
+  .slash {
+    font-size: 34px;
+    margin: 0px 4px;
+  }
+
+  .shopGrid {
+    flex: 3;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 52px;
+    column-gap: 48px;
+  }
+
+  .filters {
+    flex: 1;
+  }
 }

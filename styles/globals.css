@@ -47,3 +47,9 @@ a {
   box-sizing: border-box;
   font-family: "Archivo";
 }
+
+@media (min-width: 992px) {
+  h4 {
+    font-size: 30px;
+  }
+}

@@ -44,3 +44,11 @@
   padding-bottom: 13px;
   z-index: 1;
 }
+
+@media (min-width: 992px) {
+  .imgWrapper {
+    position: relative;
+    height: 390px;
+    margin-bottom: 19px;
+  }
+}

@@ -1,15 +1,27 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import Button from "../Button";
 import CardSmall from "../CardSmall";
 import Separator from "../Separator";
 import styles from "./hero.module.css";
 
 export default function Hero() {
+  const { width } = useWindowDimensions();
+
+  const shortDescription =
+    "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book.";
+  const largeDescription =
+    "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book.So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book.So how did the classical Latin become so incoherent? According to McClintock.";
+
   return (
     <>
       <section className={styles.container}>
-        <h1 className={styles.title}>Samurai King Resting</h1>
+        <div className={styles.heading}>
+          <h1>Samurai King Resting</h1>
+          {width > 992 && <Button label="ADD TO CART" size="medium" />}
+        </div>
 
         <div className={styles.imgWrapper}>
           <Image
@@ -23,28 +35,27 @@ export default function Hero() {
           <div className={styles.imgLabel}>Photo of the day</div>
         </div>
 
-        <Button label="ADD TO CART" size="large" />
+        {width < 992 && <Button label="ADD TO CART" size="large" />}
 
         <div className={styles.content}>
-          <h3>About the Samurai King Resting</h3>
+          <div className={styles.info}>
+            <h3>About the Samurai King Resting</h3>
 
-          <p>
-            So how did the classical Latin become so incoherent? According to
-            McClintock, a 15th century typesetter likely scrambled part of
-            Cicero's De Finibus in order to provide placeholder text to mockup
-            various fonts for a type specimen book.
-          </p>
-
-          <h3>People also buy</h3>
-          <div className={styles.cardRowWrap}>
-            <CardSmall />
-            <CardSmall />
-            <CardSmall />
+            <p>{width < 992 ? shortDescription : largeDescription}</p>
           </div>
-          <h3>Details</h3>
 
-          <p>Size: 1020 x 1020 pixel</p>
-          <p>Size: 15 mb</p>
+          <div className={styles.additionalInfo}>
+            <h3>People also buy</h3>
+            <div className={styles.cardRowWrap}>
+              <CardSmall />
+              <CardSmall />
+              <CardSmall />
+            </div>
+            <h3>Details</h3>
+
+            <p>Size: 1020 x 1020 pixel</p>
+            <p>Size: 15 mb</p>
+          </div>
         </div>
       </section>
       <Separator />

@@ -1,0 +1,23 @@
+.container {
+  margin: 40px 0px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.check {
+  position: absolute;
+  top: 2px;
+  /* right: 0px; */
+  bottom: 0px;
+  left: 8px;
+}
+
+.label {
+  color: #1c1c1c;
+  font-size: 22px;
+  font-weight: 400;
+  margin-left: 23px;
+}

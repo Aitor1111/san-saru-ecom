@@ -4,7 +4,7 @@
   margin: 32px 18px 50px 18px;
 }
 
-.title {
+.heading {
   margin-bottom: 35px;
 }
 
@@ -28,8 +28,63 @@
   margin-right: 16px;
 }
 
+.additionalInfo {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .cardRowWrap {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 25px;
+}
+
+@media (min-width: 992px) {
+  .container {
+    margin: 62px 0px 65px 0px;
+  }
+
+  .heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8px;
+  }
+
+  .imgWrapper {
+    margin-bottom: 46px;
+    height: 553px;
+  }
+
+  .imgLabel {
+    background-color: white;
+    position: absolute;
+    bottom: 0px;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 21px 56px 29px 56px;
+  }
+
+  .content {
+    margin-right: 0px;
+    margin-left: 10px;
+    display: flex;
+  }
+
+  .info {
+    flex: 1;
+    width: 90%;
+  }
+
+  .additionalInfo {
+    flex: 1;
+    width: 70%;
+    align-items: flex-end;
+  }
+
+  .cardRowWrap {
+    column-gap: 30px;
+  }
 }
