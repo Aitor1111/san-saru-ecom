@@ -7,6 +7,7 @@ import styles from "../styles/Home.module.css";
 import ShopGrid from "../components/ShopGrid";
 import getProducts from "../logic/get-products";
 import { useEffect, useState } from "react";
+import getFilteredProducts from "../logic/get-filtered-products";
 
 export const getStaticProps = async () => {
   const data = await getProducts();
@@ -17,7 +18,9 @@ export const getStaticProps = async () => {
 };
 
 const Home: NextPage = ({ data }: any) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState<any>([]);
+  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
@@ -38,6 +41,24 @@ const Home: NextPage = ({ data }: any) => {
     setRefresh(!refresh);
   };
 
+  const handleCategoryFilterSelect = async (item: string | string[]) => {
+    let newFilters = [...selectedFilters];
+
+    if (typeof item === "object") {
+      newFilters = item;
+      setSelectedFilters(item);
+    } else {
+      const filterIndex = selectedFilters.indexOf(item);
+      filterIndex > -1
+        ? newFilters.splice(filterIndex, 1)
+        : newFilters.push(item);
+
+      setSelectedFilters(newFilters);
+    }
+
+    setFilteredProducts(await getFilteredProducts(newFilters));
+  };
+
   return (
     <div>
       <Head>
@@ -52,7 +73,12 @@ const Home: NextPage = ({ data }: any) => {
           featuredProducts={data?.data.filter((p: any) => p.featured)}
           onAddToCart={handleAddToCart}
         />
-        <ShopGrid products={data?.data} onAddToCart={handleAddToCart} />
+        <ShopGrid
+          products={filteredProducts.length > 0 ? filteredProducts : data?.data}
+          onAddToCart={handleAddToCart}
+          selectedFilters={selectedFilters}
+          onCategoryFilterSelect={handleCategoryFilterSelect}
+        />
       </main>
     </div>
   );

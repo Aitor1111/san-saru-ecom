@@ -8,7 +8,12 @@ import MobileFilters from "../MobileFilters";
 import Separator from "../Separator";
 import styles from "./shop-grid.module.css";
 
-export default function ShopGrid({ products, onAddToCart }: any) {
+export default function ShopGrid({
+  products,
+  onAddToCart,
+  selectedFilters,
+  onCategoryFilterSelect,
+}: any) {
   const [pageSelected, setPageSelected] = useState(2);
   const [showFiltersMobile, setShowFiltersMobile] = useState(false);
   const { width } = useWindowDimensions();
@@ -54,23 +59,30 @@ export default function ShopGrid({ products, onAddToCart }: any) {
           <div className={styles.filters}>
             <h3 className={styles.filtersSectionTitle}>Category</h3>
             {FILTERS_CATEGORY.map((c) => (
-              <CheckBox key={c.id} selected={true} label={c.label} />
+              <CheckBox
+                key={c.id}
+                selected={selectedFilters.indexOf(c.name) > -1}
+                label={c.label}
+                onClick={() => onCategoryFilterSelect(c.name)}
+              />
             ))}
 
             <Separator size="small" />
             <h3 className={styles.filtersSectionTitle}>Price Range</h3>
             {FILTERS_PRICE.map((c) => (
-              <CheckBox key={c.id} selected={true} label={c.label} />
+              <CheckBox key={c.id} selected={false} label={c.label} />
             ))}
           </div>
         ) : (
           <MobileFilters
+            onCategoryFilterSelect={onCategoryFilterSelect}
+            selectedFilters={selectedFilters}
             visible={showFiltersMobile}
             onClose={() => setShowFiltersMobile(false)}
           />
         )}
         <div className={styles.shopGrid}>
-          {products.map((product: any) => (
+          {products?.map((product: any) => (
             <CardLarge
               onAddToCart={() => onAddToCart(product)}
               key={product._id}
