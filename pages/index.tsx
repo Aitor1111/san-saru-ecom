@@ -6,8 +6,17 @@ import Hero from "../components/Hero";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 import ShopGrid from "../components/ShopGrid";
+import getProducts from "../logic/get-products";
 
-const Home: NextPage = () => {
+export const getStaticProps = async () => {
+  const data = await getProducts();
+
+  return {
+    props: { data },
+  };
+};
+
+const Home: NextPage = ({ data }: any) => {
   return (
     <div>
       <Head>
@@ -18,7 +27,7 @@ const Home: NextPage = () => {
 
       <Header />
       <main className={styles.main}>
-        <Hero />
+        <Hero featuredProducts={data?.data.filter((p: any) => p.featured)} />
         <ShopGrid />
       </main>
     </div>

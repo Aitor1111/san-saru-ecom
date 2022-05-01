@@ -48,6 +48,18 @@ a {
   font-family: "Archivo";
 }
 
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 @media (min-width: 992px) {
   h4 {
     font-size: 30px;

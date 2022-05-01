@@ -3,11 +3,13 @@ import { useState } from "react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import CardLarge from "../CardLarge";
 import CheckBox from "../CheckBox";
+import MobileFilters from "../MobileFilters";
 import Separator from "../Separator";
 import styles from "./shop-grid.module.css";
 
 export default function ShopGrid() {
   const [pageSelected, setPageSelected] = useState(2);
+  const [showFiltersMobile, setShowFiltersMobile] = useState(false);
   const { width } = useWindowDimensions();
 
   return (
@@ -35,17 +37,19 @@ export default function ShopGrid() {
             />
           </div>
         ) : (
-          <Image
-            src="/filters-box.svg"
-            alt="Filters button"
-            width={29}
-            height={29}
-          />
+          <button onClick={() => setShowFiltersMobile(true)}>
+            <Image
+              src="/filters-box.svg"
+              alt="Filters button"
+              width={29}
+              height={29}
+            />
+          </button>
         )}
       </div>
       <section className={styles.shopSection}>
         {/* TODO Export to 2 filters components */}
-        {width > 992 && (
+        {width > 992 ? (
           <div className={styles.filters}>
             <h3 className={styles.filtersSectionTitle}>Category</h3>
             <CheckBox selected={true} label={"People"} />
@@ -59,6 +63,11 @@ export default function ShopGrid() {
             <CheckBox selected={true} label={"$100 - $200"} />
             <CheckBox selected={true} label={"More than $200"} />
           </div>
+        ) : (
+          <MobileFilters
+            visible={showFiltersMobile}
+            onClose={() => setShowFiltersMobile(false)}
+          />
         )}
         <div className={styles.shopGrid}>
           <CardLarge />
