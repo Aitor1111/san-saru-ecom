@@ -31,6 +31,7 @@
 }
 
 .ctaButton {
+  display: none;
   border: 0px;
   background-color: black;
   color: white;
@@ -43,6 +44,10 @@
   padding-top: 13px;
   padding-bottom: 13px;
   z-index: 1;
+}
+
+.container:hover .ctaButton {
+  display: block;
 }
 
 @media (min-width: 992px) {

@@ -20,7 +20,7 @@ export default function ShopGrid({
   selectedFilters,
   onCategoryFilterSelect,
 }: ShopGridProps) {
-  const [pageSelected, setPageSelected] = useState(2);
+  const [pageSelected, setPageSelected] = useState(0);
   const [showFiltersMobile, setShowFiltersMobile] = useState(false);
 
   return (

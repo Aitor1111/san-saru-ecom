@@ -1,8 +1,6 @@
 import config from "../config";
 
-export default async function getFilteredProducts(
-  categories: string[]
-): Promise<any> {
+export default async function getFilteredProducts(categories) {
   const { API_URL } = config;
 
   const headers = {
