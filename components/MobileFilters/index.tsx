@@ -5,12 +5,19 @@ import CheckBox from "../CheckBox";
 import Separator from "../Separator";
 import styles from "./mobile-filters.module.css";
 
+type MobileFiltersProps = {
+  visible: boolean;
+  onClose: () => void;
+  selectedFilters: string[];
+  onCategoryFilterSelect: (filters: string[]) => void;
+};
+
 export default function MobileFilters({
   visible = true,
   onClose = () => {},
   selectedFilters,
   onCategoryFilterSelect,
-}: any) {
+}: MobileFiltersProps) {
   const [tempFilters, setTempFilters] = useState(selectedFilters);
 
   const handleCategoryFilterSelect = async (name: string) => {

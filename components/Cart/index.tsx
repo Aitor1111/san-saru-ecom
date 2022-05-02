@@ -3,17 +3,19 @@ import Button from "../Button";
 import Separator from "../Separator";
 import styles from "./cart.module.css";
 
+type CartProps = {
+  cartItems: any[];
+  visible: boolean;
+  onClose: () => void;
+  onClearCart: () => void;
+};
+
 export default function Cart({
   cartItems,
   visible,
   onClose,
   onClearCart,
-}: {
-  cartItems: [any];
-  visible: boolean;
-  onClose: () => void;
-  onClearCart: () => void;
-}) {
+}: CartProps) {
   return (
     <div className={`${styles.modal} ${visible ? styles.visible : ""}`}>
       <div className={styles.modalContent}>

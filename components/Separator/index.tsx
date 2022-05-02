@@ -1,5 +1,9 @@
 import styles from "./separator.module.css";
 
-export default function Separator({ size = "large" }) {
+type SeparatorProps = {
+  size?: "large" | "small";
+};
+
+export default function Separator({ size = "large" }: SeparatorProps) {
   return <div className={`${styles.separator} ${styles[size]}`} />;
 }

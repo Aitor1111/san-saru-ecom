@@ -5,8 +5,13 @@ import CardSmall from "../CardSmall";
 import Separator from "../Separator";
 import styles from "./hero.module.css";
 
-// TODO CREATE PRODUCT MODEL
-export default function Hero({ featuredProducts, onAddToCart }: any) {
+type HeroProps = {
+  // TODO CREATE PRODUCT MODEL
+  featuredProducts: [any];
+  onAddToCart: (product: any) => void;
+};
+
+export default function Hero({ featuredProducts, onAddToCart }: HeroProps) {
   const formatCategory = (category: string) =>
     category.charAt(0).toUpperCase() + category.slice(1);
 

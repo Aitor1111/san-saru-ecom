@@ -7,12 +7,19 @@ import MobileFilters from "../MobileFilters";
 import Separator from "../Separator";
 import styles from "./shop-grid.module.css";
 
+type ShopGridProps = {
+  products: [any];
+  onAddToCart: (product: any) => void;
+  selectedFilters: string[];
+  onCategoryFilterSelect: (filter: string | string[]) => void;
+};
+
 export default function ShopGrid({
   products,
   onAddToCart,
   selectedFilters,
   onCategoryFilterSelect,
-}: any) {
+}: ShopGridProps) {
   const [pageSelected, setPageSelected] = useState(2);
   const [showFiltersMobile, setShowFiltersMobile] = useState(false);
 

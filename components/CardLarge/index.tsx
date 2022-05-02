@@ -2,13 +2,15 @@ import Image from "next/image";
 import { CURRENCY } from "../../constants/currency";
 import styles from "./card-large.module.css";
 
+type CardLargeProps = {
+  product: any;
+  onAddToCart: () => void;
+};
+
 export default function CardLarge({
   product,
   onAddToCart = () => {},
-}: {
-  product: any;
-  onAddToCart: () => void;
-}) {
+}: CardLargeProps) {
   const getCurrency = (currency: string) =>
     currency === "EUR" || currency === "USD"
       ? CURRENCY[currency].symbol

@@ -4,7 +4,12 @@ import styles from "./header.module.css";
 import { useState } from "react";
 import Cart from "../Cart";
 
-export default function Header({ cartItems, onClearCart }: any) {
+type HeaderProps = {
+  cartItems: any[];
+  onClearCart: () => void;
+};
+
+export default function Header({ cartItems, onClearCart }: HeaderProps) {
   const [showCart, setShowCart] = useState(false);
 
   const toggleCart = () => setShowCart(!showCart);

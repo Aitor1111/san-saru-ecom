@@ -1,22 +1,21 @@
 import Image from "next/image";
 import styles from "./checkbox.module.css";
 
-// TODO: MOBILE FIRST
+type CheckBoxProps = {
+  selected: boolean;
+  label: string;
+  size?: number;
+  onClick?: () => void;
+};
 
 export default function CheckBox({
   selected,
   label,
   size = 23,
   onClick = () => {},
-}: {
-  selected: boolean;
-  label: string;
-  size?: number;
-  onClick?: () => void;
-}) {
+}: CheckBoxProps) {
   return (
     <button onClick={onClick} className={styles.container}>
-      {/* <div> */}
       <Image
         src="/checkbox-box.svg"
         alt="checbox-box"
@@ -33,7 +32,6 @@ export default function CheckBox({
           />
         </div>
       )}
-      {/* </div> */}
       <span className={styles.label}>{label}</span>
     </button>
   );
