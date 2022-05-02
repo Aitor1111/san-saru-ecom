@@ -1,9 +1,9 @@
 import config from "../config";
 
-export default async function getProducts(): Promise<any> {
+export default async function getProducts(page: number = 1): Promise<any> {
   const { API_URL } = config;
 
-  const res = await fetch(`${API_URL}/products/`, {
+  const res = await fetch(`${API_URL}/products?page=${page}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

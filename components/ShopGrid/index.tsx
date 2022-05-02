@@ -10,8 +10,10 @@ import styles from "./shop-grid.module.css";
 type ShopGridProps = {
   products: [any];
   onAddToCart: (product: any) => void;
+  onLoadPage: (page: number) => void;
   selectedFilters: string[];
   onCategoryFilterSelect: (filter: string | string[]) => void;
+  totalPages: number;
 };
 
 export default function ShopGrid({
@@ -19,9 +21,16 @@ export default function ShopGrid({
   onAddToCart,
   selectedFilters,
   onCategoryFilterSelect,
+  totalPages,
+  onLoadPage,
 }: ShopGridProps) {
-  const [pageSelected, setPageSelected] = useState(0);
+  const [pageSelected, setPageSelected] = useState(1);
   const [showFiltersMobile, setShowFiltersMobile] = useState(false);
+
+  const handleSelectPage = (page: number) => {
+    setPageSelected(page);
+    onLoadPage(page);
+  };
 
   return (
     <section className={styles.container}>
@@ -100,29 +109,34 @@ export default function ShopGrid({
 
       <div className={styles.paginator}>
         <Image
-          onClick={() =>
-            setPageSelected(pageSelected > 0 ? pageSelected - 1 : 0)
-          }
+          onClick={() => {
+            const prevPage = pageSelected > 1 ? pageSelected - 1 : 1;
+            handleSelectPage(prevPage);
+          }}
           src="/chevron-left.svg"
           alt="prev-page"
           width={12}
           height={20}
         />
-        {[1, 2, 3, 4].map((page, index) => (
-          <button
-            onClick={() => setPageSelected(index)}
-            className={`${styles.page} ${
-              pageSelected === index ? styles.pageSelected : ""
-            }`}
-            key={index}
-          >
-            {page}
-          </button>
-        ))}
+        {Array.from(Array(totalPages).keys(), (n) => n + 1).map(
+          (page, index) => (
+            <button
+              onClick={() => handleSelectPage(page)}
+              className={`${styles.page} ${
+                pageSelected === page ? styles.pageSelected : ""
+              }`}
+              key={index}
+            >
+              {page}
+            </button>
+          )
+        )}
         <Image
-          onClick={() =>
-            setPageSelected(pageSelected < 3 ? pageSelected + 1 : 3)
-          }
+          onClick={() => {
+            const nextPage =
+              pageSelected < totalPages ? pageSelected + 1 : totalPages;
+            handleSelectPage(nextPage);
+          }}
           src="/chevron-right.svg"
           alt="next-page"
           width={12}

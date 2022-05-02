@@ -18,6 +18,7 @@ export const getStaticProps = async () => {
 };
 
 const Home: NextPage = ({ data }: any) => {
+  const [products, setProducts] = useState<any[]>(data?.data ?? []);
   const [filteredProducts, setFilteredProducts] = useState<any>([]);
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -28,6 +29,11 @@ const Home: NextPage = ({ data }: any) => {
 
     setCartItems(cart ? JSON.parse(cart) : []);
   }, [refresh]);
+
+  const handleLoadPage = async (page: number) => {
+    const newData = await getProducts(page);
+    setProducts(newData?.data ?? data?.data);
+  };
 
   const handleAddToCart = (item: any) => {
     const currentCart = cartItems;
@@ -74,10 +80,12 @@ const Home: NextPage = ({ data }: any) => {
           onAddToCart={handleAddToCart}
         />
         <ShopGrid
-          products={filteredProducts.length > 0 ? filteredProducts : data?.data}
+          totalPages={data?.last_page}
+          products={filteredProducts.length > 0 ? filteredProducts : products}
           onAddToCart={handleAddToCart}
           selectedFilters={selectedFilters}
           onCategoryFilterSelect={handleCategoryFilterSelect}
+          onLoadPage={handleLoadPage}
         />
       </main>
     </div>
